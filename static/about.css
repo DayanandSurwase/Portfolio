@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #1b1b1b;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.about-page {
+    padding-top: 82px;
+    padding-bottom: 50px;
+    min-height: calc(100vh - 82px - 50px);
+}
+
+/* --- Hero Section (New Name) --- */
+.about-page .hero-about {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1500x500/111111/444444?text=Background+Image+Placeholder') no-repeat center center/cover;
+    padding: 120px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-page .hero-about::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(138, 255, 138, 0.1) 0%, transparent 70%);
+    animation: pulseGlow 10s infinite alternate;
+    z-index: 0;
+}
+
+.about-page .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.about-page .hero-content h1 {
+    font-size: 4.5em;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSlideUp 1s ease-out 0.2s forwards;
+}
+
+.about-page .hero-content .subheading {
+    font-size: 1.8em;
+    color: #8aff8a;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInSlideUp 1s ease-out 0.5s forwards;
+}
+
+/* --- General Content Sections --- */
+.info-section, .skills-section, .education-section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start; /* Align content to the top within sections */
+    gap: 60px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.info-section {
+    border-radius: 10px;
+    background-color: #2a2a2a; /* Slightly different background for visual separation */
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.content-block {
+    flex: 2; /* Content block takes more space */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.info-section h2, .skills-section h2, .education-section h2 {
+    font-size: 3em;
+    color: #ffffff; /* White heading for contrast */
+    border-bottom: 4px solid #8aff8a;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+    align-self: flex-start;
+    animation: slideInLeft 1s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+.info-section p, .skills-section ul li, .education-section p {
+    font-size: 1.15em;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #c0c0c0;
+}
+
+/* --- Profile Image --- */
+.profile-image-container {
+    flex: 1; /* Image container takes less space */
+    min-width: 250px; /* Minimum width before wrapping */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px; /* Padding for shadow */
+    animation: fadeInScale 1s ease-out 0.8s forwards;
+    opacity: 0;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 350px; /* Max width for image */
+    height: auto;
+    border-radius: 15px; /* Slightly rounded corners */
+    object-fit: cover;
+    border: 3px solid #8aff8a; /* Green border */
+    box-shadow: 0 10px 40px rgba(138, 255, 138, 0.2); /* Soft green glow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.profile-image:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(138, 255, 138, 0.4);
+}
+
+
+/* --- Skills Section --- */
+.skills-section {
+    background-color: #1b1b1b;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    width: 100%;
+}
+
+.skill-category-card {
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid #3a3a3a;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.skills-grid .skill-category-card:nth-child(1) { animation-delay: 0.2s; }
+.skills-grid .skill-category-card:nth-child(2) { animation-delay: 0.4s; }
+.skills-grid .skill-category-card:nth-child(3) { animation-delay: 0.6s; }
+
+.skill-category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(138, 255, 138, 0.3);
+    background-color: #313131;
+}
+
+.skill-category-card h3 {
+    font-size: 1.8em;
+    color: #8aff8a;
+    margin-bottom: 20px;
+    border-bottom: 2px dashed rgba(138, 255, 138, 0.3);
+    padding-bottom: 10px;
+}
+
+.skill-category-card ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+}
+
+.skill-category-card ul li {
+    font-size: 1.05em;
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 25px; /* Space for custom icon */
+    color: #e0e0e0;
+    transition: color 0.2s ease-in-out;
+}
+
+.skill-category-card ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Custom bullet point for skills */
+.skill-category-card ul li::before {
+    content: '›'; /* Simple arrow or a unicode character */
+    position: absolute;
+    left: 0;
+    color: #8aff8a;
+    font-size: 1.2em;
+    line-height: 1;
+    font-weight: bold;
+    transform: translateY(-2px);
+    transition: transform 0.2s ease-in-out;
+}
+
+.skill-category-card ul li:hover {
+    color: #8aff8a;
+}
+
+.skill-category-card ul li:hover::before {
+    transform: translateY(-2px) translateX(5px);
+}
+
+
+/* --- Education Section --- */
+.education-section {
+    background-color: #2a2a2a;
+}
+
+.education-timeline {
+    position: relative;
+    width: 100%;
+    padding-left: 20px; /* Space for the line */
+}
+
+.education-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #8aff8a;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 40px;
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.2s; }
+.timeline-item:nth-child(2) { animation-delay: 0.4s; }
+
+.timeline-dot {
+    position: absolute;
+    left: -8px; /* Adjust to align with the line */
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: #8aff8a;
+    border-radius: 50%;
+    border: 3px solid #1b1b1b; /* Matches body background */
+    box-shadow: 0 0 0 5px rgba(138, 255, 138, 0.2);
+}
+
+.timeline-content h3 {
+    font-size: 1.6em;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.timeline-content .institution {
+    font-size: 1.1em;
+    color: #c0c0c0;
+    margin-bottom: 5px;
+}
+
+.timeline-content .duration {
+    font-size: 0.95em;
+    color: #8aff8a;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.timeline-content .description {
+    font-size: 1em;
+    color: #a0a0a0;
+    margin-bottom: 0;
+}
+
+/* --- Animations --- */
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(0.8); opacity: 0.5; }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .about-page .hero-content h1 {
+        font-size: 3.5em;
+    }
+
+    .about-page .hero-content .subheading {
+        font-size: 1.5em;
+    }
+
+    .info-section, .skills-section, .education-section {
+        flex-direction: column; /* Stack content and image/grid */
+        gap: 40px;
+        padding: 60px 5%;
+    }
+
+    .info-section .content-block, .profile-image-container {
+        flex: none; /* Remove flex sizing */
+        width: 100%; /* Full width */
+    }
+
+    .profile-image {
+        max-width: 300px; /* Constrain image size */
+        margin: 0 auto; /* Center image */
+    }
+
+    .info-section h2, .skills-section h2, .education-section h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Allow smaller cards */
+        gap: 25px;
+    }
+    
+    .skill-category-card {
+        padding: 25px;
+    }
+
+    .skill-category-card h3 {
+        font-size: 1.6em;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.4em;
+    }
+
+    .timeline-content .institution, .timeline-content .duration, .timeline-content .description {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-page .hero-about {
+        padding: 80px 5%;
+    }
+
+    .about-page .hero-content h1 {
+        font-size: 2.8em;
+    }
+
+    .about-page .hero-content .subheading {
+        font-size: 1.3em;
+    }
+
+    .info-section, .skills-section, .education-section {
+        padding: 40px 5%;
+    }
+
+    .info-section h2, .skills-section h2, .education-section h2 {
+        font-size: 2em;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+    }
+
+    .info-section p, .skills-section ul li, .education-section p {
+        font-size: 1em;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr; /* Stack skill cards vertically */
+    }
+
+    .skill-category-card {
+        padding: 20px;
+    }
+
+    .skill-category-card h3 {
+        font-size: 1.4em;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-page .hero-about {
+        padding: 60px 3%;
+    }
+
+    .about-page .hero-content h1 {
+        font-size: 2.2em;
+    }
+
+    .about-page .hero-content .subheading {
+        font-size: 1em;
+    }
+
+    .info-section, .skills-section, .education-section {
+        padding: 30px 3%;
+        gap: 30px;
+    }
+
+    .info-section h2, .skills-section h2, .education-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+    }
+
+    .profile-image {
+        max-width: 250px;
+    }
+}
