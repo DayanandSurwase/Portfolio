@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact</title>
+    <link rel="stylesheet" href="/static/contact.css" />
+  </head>
+  <body>
+    <div class="contact">
+      <div class="main-container">
+        <div class="left-side">
+          <div class="form-wrapper">
+            <h3 class="form-heading">Contact Form</h3>
+            <form id="contactForm" class="form">
+              <div class="field">
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Enter Your Username"
+                  required
+                />
+              </div>
+              <div class="field">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter Your Email"
+                  required
+                />
+              </div>
+              <div class="field">
+                <textarea
+                  name="message"
+                  id="message"
+                  placeholder="Enter Your Message"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-button">
+                <button type="submit">Send Message</button>
+              </div>
+              <p id="form-status" style="margin-top: 10px; font-weight: 500;"></p>
+            </form>
+          </div>
+        </div>
+
+        <div class="right-side">
+          <iframe
+            class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04711147487!2d73.78056571205512!3d18.524598599623925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1748691064482!5m2!1sen!2sin"
+            width="500"
+            height="350"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("contactForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        const statusEl = document.getElementById("form-status");
+        statusEl.textContent = "Sending...";
+
+        try {
+          const res = await fetch("/submit_contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: username, email, message })
+          });
+
+          const result = await res.json();
+          if (result.success) {
+            statusEl.textContent = "✅ Message sent successfully!";
+            document.getElementById("contactForm").reset();
+          } else {
+            statusEl.textContent = "❌ Failed: " + (result.error || "Unknown error");
+          }
+        } catch (err) {
+          statusEl.textContent = "❌ Network error";
+        }
+      });
+    </script>
+  </body>
+</html>

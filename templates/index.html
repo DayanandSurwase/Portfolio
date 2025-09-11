@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/url_logo.png" type="image/png" />
+    <link rel="stylesheet" href="/static/main.css" />
+    <title>DS - Welcome To My Dev World</title>
+  </head>
+  <body>
+    <div class="nav">
+      <ul class="nav-links">
+        <li><a href="/" onclick="route(event)">Home</a></li>
+        <li><a href="/about" onclick="route(event)">About</a></li>
+        <li><a href="/projects" onclick="route(event)">Projects</a></li>
+        <li><a href="/contact" onclick="route(event)">Contact</a></li>
+      </ul>
+
+      <div class="logo">
+        <a href="/" onclick="route(event)">DS</a>
+      </div>
+
+      <div class="socialicons">
+        <a href="https://github.com/DayanandSurwase" target="_blank">
+          <img src="/static/githublogo.png" class="git"/>
+        </a>
+        <a href="https://linkedin.com/in/dayanand-surwase-564135380" target="_blank">
+          <img src="/static/linkedinlogo.png" class="linked" />
+        </a>
+        <a href="404">
+          <img src="/static/pinlogo.png" class="pin" />
+        </a>
+        <a href="https://www.instagram.com/_.dayanand?igsh=MXE2Y3FxcGlncHRvcw==" target="_blank">
+          <img src="/static/iglogo.png" class="ig" />
+        </a>
+      </div>
+
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="/" onclick="route(event)">Home</a></li>
+          <li><a href="/about" onclick="route(event)">About</a></li>
+          <li><a href="/projects" onclick="route(event)">Projects</a></li>
+          <li><a href="/contact" onclick="route(event)">Contact</a></li>
+        </ul>
+        <div class="socialicons">
+          <a href="https://github.com/DayanandSurwase" target="_blank">
+          <img src="/static/githublogo.png" class="git"/>
+        </a>
+        <a href="https://linkedin.com/in/dayanand-surwase-564135380" target="_blank">
+          <img src="/static/linkedinlogo.png" class="linked" />
+        </a>
+        <a href="404">
+          <img src="/static/pinlogo.png" class="pin" />
+        </a>
+        <a href="https://www.instagram.com/_.dayanand?igsh=MXE2Y3FxcGlncHRvcw==" target="_blank">
+          <img src="/static/iglogo.png" class="ig" />
+        </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content Loaded Dynamically -->
+    <div id="main-page"></div>
+
+    <div class="footer">
+      <p>All &copy; Rights Are Reserved</p>
+    </div>
+
+    <!-- Hamburger Logic -->
+    <script>
+      const nav = document.querySelector(".nav");
+      const hamburger = document.querySelector(".hamburger");
+
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+    </script>
+
+    <!-- SPA Routing Logic -->
+    <script type="module" src="/static/main.js"></script>
+  </body>
+</html>
