@@ -2,11 +2,18 @@ from flask import Flask, render_template, send_from_directory, request, jsonify
 import firebase_admin
 from firebase_admin import credentials, db
 import os
+import json
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
 if not firebase_admin._apps:
-    cred = credentials.Certificate("firebase_key.json")  # Path to file directly
+    firebase_key_json = os.environ.get("FIREBASE_KEY")
+    if not firebase_key_json:
+        raise ValueError(
+            "FIREBASE_KEY environment variable is not set! "
+            "Set it in Render Dashboard with your Firebase service account JSON."
+        )
+    cred = credentials.Certificate(json.loads(firebase_key_json))
     firebase_admin.initialize_app(cred, {
         "databaseURL": "https://my-portfolio-b8a2b-default-rtdb.asia-southeast1.firebasedatabase.app/"
     })
