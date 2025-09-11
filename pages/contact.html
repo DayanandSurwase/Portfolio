@@ -42,7 +42,10 @@
               <div class="form-button">
                 <button type="submit">Send Message</button>
               </div>
-              <p id="form-status" style="margin-top: 10px; font-weight: 500;"></p>
+              <p
+                id="form-status"
+                style="margin-top: 10px; font-weight: 500"
+              ></p>
             </form>
           </div>
         </div>
@@ -60,36 +63,5 @@
         </div>
       </div>
     </div>
-
-    <script>
-      document.getElementById("contactForm").addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-
-        const statusEl = document.getElementById("form-status");
-        statusEl.textContent = "Sending...";
-
-        try {
-          const res = await fetch("/submit_contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: username, email, message })
-          });
-
-          const result = await res.json();
-          if (result.success) {
-            statusEl.textContent = "✅ Message sent successfully!";
-            document.getElementById("contactForm").reset();
-          } else {
-            statusEl.textContent = "❌ Failed: " + (result.error || "Unknown error");
-          }
-        } catch (err) {
-          statusEl.textContent = "❌ Network error";
-        }
-      });
-    </script>
   </body>
 </html>
