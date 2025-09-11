@@ -6,6 +6,7 @@ import json
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
+# Initialize Firebase from environment variable
 if not firebase_admin._apps:
     firebase_key_json = os.environ.get("FIREBASE_KEY")
     if not firebase_key_json:
@@ -26,26 +27,33 @@ def serve_page(filename):
 # Receive form data from JS and store in Firebase
 @app.route("/submit_contact", methods=["POST"])
 def submit_contact():
-    data = request.get_json()
-    name = data.get("name")
-    email = data.get("email")
-    message = data.get("message")
-
-    if not all([name, email, message]):
-        return jsonify({"success": False, "error": "Missing fields"}), 400
-
     try:
+        # Ensure JSON data is received
+        data = request.get_json(force=True)
+        if not data:
+            return jsonify({"success": False, "error": "No JSON data received"}), 400
+
+        name = data.get("name")
+        email = data.get("email")
+        message = data.get("message")
+
+        if not all([name, email, message]):
+            return jsonify({"success": False, "error": "Missing fields"}), 400
+
+        # Push to Firebase
         ref = db.reference("messages")
         ref.push({
             "name": name,
             "email": email,
             "message": message
         })
+
         return jsonify({"success": True}), 200
+
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
-# Serve index.html for all SPA routes
+# Serve index.html for SPA routes
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
