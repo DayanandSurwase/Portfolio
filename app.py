@@ -16,7 +16,7 @@ if not firebase_admin._apps:
         )
     cred = credentials.Certificate(json.loads(firebase_key_json))
     firebase_admin.initialize_app(cred, {
-        "databaseURL": "https://my-portfolio-b8a2b-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        "databaseURL": "https://portfolio-678ab-default-rtdb.asia-southeast1.firebasedatabase.app/"
     })
 
 # Serve static HTML pages from /pages folder
@@ -61,3 +61,4 @@ def catch_all(path):
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=2812, debug=True)
+
